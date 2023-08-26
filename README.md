@@ -3,7 +3,7 @@
 Создать EKS cluster с двумя нодами t3.small. 
 Use data from "Diplom1"
 
-### cat tf_diplom1_data.tf
+> cat tf_diplom1_data.tf
 ```
 data "terraform_remote_state" "kubernetes_cluster" {
   backend = "s3"
@@ -27,6 +27,7 @@ terraform init
 terraform apply
 aws eks update-kubeconfig --region $(terraform output -raw cluster_region) --name $(terraform output -raw cluster_name)
 ```
+
 ```
 kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/v2.8.2/manifests/install.yaml
@@ -38,6 +39,7 @@ kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath={.data.pass
 #kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 #kubectl get all --namespace argocd # and find external ip
 
+kubectl apply -f ./argo_application.yaml
 ```
 Задеплоить любое веб-приложение в Kubernetes и подключить мониторинг, используя Grafana, Prometheus. 
 
