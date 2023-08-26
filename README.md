@@ -44,5 +44,5 @@ kubectl apply -f ./argo_application.yaml
 Задеплоить любое веб-приложение в Kubernetes и подключить мониторинг, используя Grafana, Prometheus. 
 Веб-приложение должно быть доступно через браузер. 
 Деплой приложения должен происходить через CI/CD инструмент. Рекомендуемый инструмент для CICD в Kubernetes – ArgoCD.
-
+ 
 https://github.com/Admiralissimus/RockPaperScissors
