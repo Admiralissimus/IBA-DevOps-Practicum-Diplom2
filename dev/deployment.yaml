@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: rps-app
-        image: admiralissimus/diplom2:0.18.0
+        image: admiralissimus/diplom2:0.19.0
         resources:
           requests:
             cpu: 200m
