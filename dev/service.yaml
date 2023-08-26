@@ -6,7 +6,7 @@ spec:
   selector:
     app: rps-app
   ports:
-  - port: 8080
+  - port: 80
     protocol: TCP
     targetPort: 80
     #nodePort: 30080
