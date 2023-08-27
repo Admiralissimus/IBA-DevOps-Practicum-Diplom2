@@ -1,26 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: myapp-argo-application
+  name: monitoring-application
   namespace: argocd
 spec:
   project: default
-
   source:
     repoURL: https://github.com/Admiralissimus/IBA-DevOps-Practicum-Diplom2.git
     targetRevision: HEAD
-    path: dev
+    path: monitoring
   destination: 
     server: https://kubernetes.default.svc
-    namespace: rps-app
+    namespace: monitoring
 
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
-      - PruneLast=true
-      - selfHeal=true
-      - prune=true
-      - Replace=true
     automated:
       selfHeal: true
       prune: true
