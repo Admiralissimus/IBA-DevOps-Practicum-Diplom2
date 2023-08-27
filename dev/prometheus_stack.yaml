@@ -14,7 +14,7 @@ spec:
         - name: server.persistentVolume.enabled
           value: 'false'
         - name: alertmanager.enabled
-          value: false
+          value: 'false'
 
   destination:
     namespace: prometheus1
