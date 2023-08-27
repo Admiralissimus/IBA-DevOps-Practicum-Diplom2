@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus
+  namespace: argocd
+spec:
+  project: default
+  source:
+    path: kube-prometheus
+    repoURL: 'oci://registry-1.docker.io/bitnamicharts'
+    #targetRevision: 45.6.0
+  destination:
+    namespace: prometheus
+    server: 'https://kubernetes.default.svc'
+  syncPolicy:
+    automated: 
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
