@@ -9,7 +9,7 @@ spec:
     path: charts/grafana
     repoURL: 'https://github.com/grafana/helm-charts'
     helm:
-      values: |
+      parameters: |
         adminPassword: qwerty123
         service.type: LoadBalancer
         datasources:
