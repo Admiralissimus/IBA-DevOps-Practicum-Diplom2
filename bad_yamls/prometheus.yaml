@@ -19,6 +19,3 @@ spec:
     syncOptions:
       - ServerSideApply=true
       - CreateNamespace=true
-  values: 
-    alertmanager: 
-      enabled: false
