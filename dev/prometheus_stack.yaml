@@ -1,19 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: Prometheus
+  name: monitoring
+  namespace: prometheus_stack
 spec:
+  project: default
+  source:
+    chart: kube-prometheus-stack
+    repoURL: 'https://github.com/prometheus-community/helm-charts'
+    targetRevision: HEAD
   destination:
-    name: ''
     namespace: prometheus_stack
     server: 'https://kubernetes.default.svc'
-  source:
-    path: charts/kube-prometheus-stack
-    repoURL: 'https://github.com/prometheus-community/helm-charts/'
-    targetRevision: HEAD
-  sources: []
-  project: default
   syncPolicy:
-    automated: null
+    automated: 
+      prune: true
+      selfHeal: true
     syncOptions:
+      - ServerSideApply=true
       - CreateNamespace=true
