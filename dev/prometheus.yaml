@@ -16,6 +16,10 @@ spec:
       server:
         persistentVolume:
           enabled: false
+      ingress:
+        persistentVolume:
+          enabled: false
+ 
   destination:
     namespace: prometheus
     server: 'https://kubernetes.default.svc'
