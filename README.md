@@ -32,14 +32,16 @@ aws eks update-kubeconfig --region $(terraform output -raw cluster_region) --nam
 kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/v2.8.2/manifests/install.yaml
 
-kubectl port-forward svc/argocd-server -n argocd 8080:443
-
 kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath={.data.password} | base64 -d; echo
+
+kubectl port-forward svc/argocd-server -n argocd 8080:443
 
 #kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 #kubectl get all --namespace argocd # and find external ip
 
-kubectl apply -f ./argo_application.yaml
+kubectl apply -f ./monitoring_application.yaml
+kubectl apply -f ./application.yaml
+
 ```
 Задеплоить любое веб-приложение в Kubernetes и подключить мониторинг, используя Grafana, Prometheus. 
 Веб-приложение должно быть доступно через браузер. 
