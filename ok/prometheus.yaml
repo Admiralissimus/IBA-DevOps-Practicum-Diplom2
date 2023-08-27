@@ -16,7 +16,7 @@ spec:
         - name: alertmanager.enabled
           value: 'false'
   destination:
-    namespace: prometheus
+    namespace: monitoring
     server: 'https://kubernetes.default.svc'
   syncPolicy:
     automated: 
