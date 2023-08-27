@@ -9,6 +9,10 @@ spec:
     path: charts/prometheus
     repoURL: 'https://github.com/prometheus-community/helm-charts'
     #targetRevision: 45.6.0
+    helm:
+      valuesObject:
+        alertmanager: 
+          enabled: false
   destination:
     namespace: prometheus
     server: 'https://kubernetes.default.svc'
@@ -19,6 +23,3 @@ spec:
     syncOptions:
       - ServerSideApply=true
       - CreateNamespace=true
-  values: 
-    alertmanager: 
-      enabled: false
