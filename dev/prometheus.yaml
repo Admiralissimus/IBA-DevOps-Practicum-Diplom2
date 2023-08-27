@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    path: ''
+    path: '.'
     repoURL: 'https://github.com/sukesh-hg/helm-prometheus-grafana'
     #targetRevision: 45.6.0
   destination:
