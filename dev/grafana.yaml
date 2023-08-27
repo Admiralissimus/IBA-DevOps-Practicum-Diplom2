@@ -9,6 +9,19 @@ spec:
     path: charts/grafana
     repoURL: 'https://github.com/grafana/helm-charts'
     helm:
+      values: |
+        adminPassword: qwerty123
+        service.type: LoadBalancer
+        datasources:
+          datasources.yaml:
+            apiVersion: 1
+            datasources:
+              - name: Prometheus
+                type: prometheus
+                url: http://prometheus-server.prometheus.svc.cluster.local:9090
+                access: proxy
+                isDefault: true         
+
       parameters:
         - name: service.type
           value: 'LoadBalancer'
