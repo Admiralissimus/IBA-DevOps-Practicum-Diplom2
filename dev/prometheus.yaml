@@ -13,6 +13,9 @@ spec:
       valuesObject:
         alertmanager: 
           enabled: false
+      server:
+        persistentVolume:
+          enabled: false
   destination:
     namespace: prometheus
     server: 'https://kubernetes.default.svc'
