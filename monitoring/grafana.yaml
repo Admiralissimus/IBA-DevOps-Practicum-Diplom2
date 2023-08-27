@@ -23,7 +23,13 @@ spec:
                 type: prometheus
                 url: http://prometheus-server.monitoring.svc.cluster.local
                 access: proxy
-                isDefault: true       
+                isDefault: true 
+                dashboards:
+        default:
+          kubernetes:
+            gnetId: 741
+            revision: 1
+            datasource: Prometheus      
 
   destination:
     namespace: monitoring
