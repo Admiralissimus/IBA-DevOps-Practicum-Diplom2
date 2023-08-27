@@ -9,6 +9,17 @@ spec:
     path: charts/prometheus
     repoURL: 'https://github.com/prometheus-community/helm-charts'
     #targetRevision: 45.6.0
+    helm:
+      valuesObject:
+        alertmanager: 
+          enabled: false
+      server:
+        persistentVolume:
+          enabled: false
+      ingress:
+        persistentVolume:
+          enabled: false
+ 
   destination:
     namespace: prometheus
     server: 'https://kubernetes.default.svc'
