@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     path: kube-prometheus
-    repoURL: 'oci://registry-1.docker.io/bitnamicharts'
+    repoURL: 'registry-1.docker.io/bitnamicharts'
     #targetRevision: 45.6.0
   destination:
     namespace: prometheus
