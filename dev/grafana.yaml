@@ -6,8 +6,8 @@ metadata:
 spec:
   project: default
   source:
-    path: grafana/grafana
-    repoURL: 'https://grafana.github.io/helm-charts'
+    path: charts/grafana
+    repoURL: 'https://github.com/grafana/helm-charts'
   destination:
     namespace: grafana
     server: 'https://kubernetes.default.svc'
