@@ -1,16 +1,22 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: prometheus-grafana
+  name: prometheus1
   namespace: argocd
 spec:
   project: default
   source:
-    path: '.'
-    repoURL: 'https://github.com/sukesh-hg/helm-prometheus-grafana'
+    path: charts/prometheus
+    repoURL: 'https://github.com/prometheus-community/helm-charts'
     #targetRevision: 45.6.0
+    helm:
+      parameters:
+        - name: server.persistentVolume.enabled
+          value: 'false'
+        - name: server.persistentVolume.size
+          value: 2Gi
   destination:
-    namespace: prometheus
+    namespace: prometheus1
     server: 'https://kubernetes.default.svc'
   syncPolicy:
     automated: 
