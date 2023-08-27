@@ -6,8 +6,8 @@ metadata:
 spec:
   project: default
   source:
-    path: kube-prometheus
-    repoURL: 'registry-1.docker.io/bitnamicharts'
+    path: helm-prometheus-grafana
+    repoURL: 'https://github.com/sukesh-hg'
     #targetRevision: 45.6.0
   destination:
     namespace: prometheus
