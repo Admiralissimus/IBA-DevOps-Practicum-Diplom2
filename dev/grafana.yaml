@@ -21,22 +21,6 @@ spec:
                 url: http://prometheus-server.prometheus.svc.cluster.local:9090
                 access: proxy
                 isDefault: true         
-
-      parameters:
-        - name: service.type
-          value: 'LoadBalancer'
-        - name: adminPassword
-          value: 'qwerty123'
-        - name: datasources
-          value:
-            datasources.yaml:
-              apiVersion: 1
-              datasources:
-                - name: Prometheus
-                  type: prometheus
-                  url: http://prometheus-server.prometheus.svc.cluster.local:9090
-                  access: proxy
-                  isDefault: true        
   destination:
     namespace: grafana
     server: 'https://kubernetes.default.svc'
