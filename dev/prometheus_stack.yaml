@@ -13,8 +13,9 @@ spec:
       parameters:
         - name: server.persistentVolume.enabled
           value: 'false'
-        - name: server.persistentVolume.size
-          value: 2Gi
+        - name: alertmanager.enabled
+          value: false
+
   destination:
     namespace: prometheus1
     server: 'https://kubernetes.default.svc'
