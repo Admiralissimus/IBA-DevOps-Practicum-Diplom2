@@ -13,8 +13,6 @@ spec:
     targetRevision: prometheus-24.0.0
     helm:
       parameters: 
-        - name: server.persistentVolume.storageClass
-          value: 'aws-gp3'
         - name: alertmanager.enabled
           value: 'false'
   destination:
