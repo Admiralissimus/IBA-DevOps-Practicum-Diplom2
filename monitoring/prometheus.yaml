@@ -14,7 +14,7 @@ spec:
     helm:
       parameters: 
         - name: server.persistentVolume.storageClass
-          value: 'aws-gp2'
+          value: 'gp2'
         - name: alertmanager.enabled
           value: 'false'
   destination:
