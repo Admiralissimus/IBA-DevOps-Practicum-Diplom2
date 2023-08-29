@@ -13,6 +13,8 @@ spec:
     targetRevision: prometheus-24.0.0
     helm:
       parameters: 
+        - name: server.persistentVolume.enabled
+          value: 'false'
         - name: alertmanager.enabled
           value: 'false'
   destination:
