@@ -8,7 +8,7 @@ spec:
   source:
     path: charts/prometheus
     repoURL: 'https://github.com/prometheus-community/helm-charts'
-    targetRevision: 24.0.0
+    targetRevision: 2822d8f
     helm:
       parameters:
         - name: server.persistentVolume.enabled
