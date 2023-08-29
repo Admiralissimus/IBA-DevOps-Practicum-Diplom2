@@ -39,7 +39,7 @@ kubectl port-forward svc/argocd-server -n argocd 8080:443
 #kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 #kubectl get all --namespace argocd # and find external ip
 
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.1/deploy/static/provider/aws/deploy.yaml
+#kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.1/deploy/static/provider/aws/deploy.yaml
 
 kubectl apply -f ./monitoring_application.yaml
 kubectl apply -f ./application.yaml
