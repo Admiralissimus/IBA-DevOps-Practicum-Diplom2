@@ -11,6 +11,33 @@ spec:
     path: charts/kube-prometheus-stack
     repoURL: 'https://github.com/prometheus-community/helm-charts'
     targetRevision: kube-prometheus-stack-49.2.0
+    helm:
+      parameters:
+        - name: grafana.service.type
+          value: 'LoadBalancer'
+        - name: grafana.adminPassword
+          value: 'qwerty123'
+      values: |
+        grafana:
+          datasources:
+            datasources.yaml:
+              apiVersion: 1
+              datasources:
+                - name: Prometheus
+                  type: prometheus
+                  url: http://prometheus-server.monitoring.svc.cluster.local
+                  access: proxy
+                  isDefault: true
+          sidecar:
+            dashboards:
+              enabled: true
+              defaultFolderName: "General"
+              label: grafana_dashboard
+              labelValue: "1"
+              folderAnnotation: grafana_folder
+              searchNamespace: ALL
+              provider:
+                foldersFromFilesStructure: true 
   destination:
     namespace: monitoring
     server: 'https://kubernetes.default.svc'
