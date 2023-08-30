@@ -3,25 +3,22 @@ kind: Application
 metadata:
   name: prometheus
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io # for autoremoving, when remove app-of-appps
 spec:
   project: default
   source:
     path: charts/prometheus
     repoURL: 'https://github.com/prometheus-community/helm-charts'
-    #targetRevision: 45.6.0
+    targetRevision: prometheus-24.0.0
     helm:
-      valuesObject:
-        alertmanager: 
-          enabled: false
-      server:
-        persistentVolume:
-          enabled: false
-      ingress:
-        persistentVolume:
-          enabled: false
- 
+      parameters: 
+        - name: server.persistentVolume.storageClass
+          value: 'custom-gp2'
+        - name: alertmanager.enabled
+          value: 'false'
   destination:
-    namespace: prometheus
+    namespace: monitoring
     server: 'https://kubernetes.default.svc'
   syncPolicy:
     automated: 
