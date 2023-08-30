@@ -36,10 +36,25 @@ kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath={.data.pass
 
 kubectl port-forward svc/argocd-server -n argocd 8080:443
 
+# LoadBalancer for ArgoCD
 #kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 #kubectl get all --namespace argocd # and find external ip
 
+# Ingress, if you need
 #kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.1/deploy/static/provider/aws/deploy.yaml
+
+# Add PersistantVolume access
+# https://stackoverflow.com/questions/75758115/persistentvolumeclaim-is-stuck-waiting-for-a-volume-to-be-created-either-by-ex
+eksctl utils associate-iam-oidc-provider --region=$(terraform output -raw cluster_region) --cluster=$(terraform output -raw cluster_name) --approve
+eksctl create iamserviceaccount \                                                                                                                  
+  --name ebs-csi-controller-sa \
+  --namespace kube-system \
+  --cluster $(terraform output -raw cluster_name) \
+  --attach-policy-arn arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy \
+  --approve \
+  --role-only \
+  --role-name AmazonEKS_EBS_CSI_DriverRole
+eksctl create addon --name aws-ebs-csi-driver --cluster $(terraform output -raw cluster_name) --service-account-role-arn arn:aws:iam::$(aws sts get-caller-identity --query Account --output text):role/AmazonEKS_EBS_CSI_DriverRole --force
 
 kubectl apply -f ./monitoring_application.yaml
 kubectl apply -f ./application.yaml
