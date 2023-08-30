@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: monitoring
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io # for autoremoving, when remove app-of-appps
+spec:
+  project: default
+  source:
+    path: charts/kube-prometheus-stack
+    repoURL: 'https://github.com/prometheus-community/helm-charts'
+    targetRevision: kube-prometheus-stack-49.2.0
+  destination:
+    namespace: monitoring
+    server: 'https://kubernetes.default.svc'
+  syncPolicy:
+    automated: 
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
