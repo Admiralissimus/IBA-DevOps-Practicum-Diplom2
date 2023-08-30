@@ -15,8 +15,8 @@ spec:
       parameters: 
         # - name: server.persistentVolume.enabled
         #   value: 'false'
-        - name: alertmanager.enabled
-          value: 'false'
+        # - name: alertmanager.enabled
+        #   value: 'false'
   destination:
     namespace: monitoring
     server: 'https://kubernetes.default.svc'
