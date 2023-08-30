@@ -26,7 +26,17 @@ spec:
                 type: prometheus
                 url: http://prometheus-server.monitoring.svc.cluster.local
                 access: proxy
-                isDefault: true 
+                isDefault: true
+        sidecar:
+          dashboards:
+            enabled: true
+            defaultFolderName: "General"
+            label: grafana_dashboard
+            labelValue: "1"
+            folderAnnotation: grafana_folder
+            searchNamespace: ALL
+            provider:
+              foldersFromFilesStructure: true 
 
   destination:
     namespace: monitoring
