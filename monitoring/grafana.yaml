@@ -1,0 +1,50 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: grafana
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io ## for autoremoving, when remove app-of-appps
+spec:
+  project: default
+  source:
+    path: charts/grafana
+    repoURL: 'https://github.com/grafana/helm-charts'
+    targetRevision: grafana-6.59.0
+    helm:
+      parameters:
+        - name: service.type
+          value: 'LoadBalancer'
+        - name: adminPassword
+          value: 'qwerty123'
+      values: |
+        datasources:
+          datasources.yaml:
+            apiVersion: 1
+            datasources:
+              - name: Prometheus
+                type: prometheus
+                url: http://prometheus-server.monitoring.svc.cluster.local
+                access: proxy
+                isDefault: true
+        sidecar:
+          dashboards:
+            enabled: true
+            defaultFolderName: "General"
+            label: grafana_dashboard
+            labelValue: "1"
+            folderAnnotation: grafana_folder
+            searchNamespace: ALL
+            provider:
+              foldersFromFilesStructure: true 
+
+  destination:
+    namespace: monitoring
+    server: 'https://kubernetes.default.svc'
+  syncPolicy:
+    automated: 
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true
