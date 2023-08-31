@@ -46,7 +46,7 @@ kubectl port-forward svc/argocd-server -n argocd 8080:443
 # Add PersistantVolume access
 # https://stackoverflow.com/questions/75758115/persistentvolumeclaim-is-stuck-waiting-for-a-volume-to-be-created-either-by-ex
 eksctl utils associate-iam-oidc-provider --region=$(terraform output -raw cluster_region) --cluster=$(terraform output -raw cluster_name) --approve
-eksctl create iamserviceaccount \                                                                                                                  
+eksctl create iamserviceaccount \
   --name ebs-csi-controller-sa \
   --namespace kube-system \
   --cluster $(terraform output -raw cluster_name) \
