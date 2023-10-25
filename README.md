@@ -6,7 +6,7 @@
 Веб-приложение должно быть доступно через браузер. 
 Деплой приложения должен происходить через CI/CD инструмент. Рекомендуемый инструмент для CICD в Kubernetes – ArgoCD.
 
-Use data from "Diplom1"
+Used data from "Diplom1"
 
 > cat tf_diplom1_data.tf
 ```
