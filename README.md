@@ -1,6 +1,11 @@
 # IBA-DevOps-Practicum-Diplom2
 
 Создать EKS cluster с двумя нодами t3.small. 
+
+Задеплоить любое веб-приложение в Kubernetes и подключить мониторинг, используя Grafana, Prometheus. 
+Веб-приложение должно быть доступно через браузер. 
+Деплой приложения должен происходить через CI/CD инструмент. Рекомендуемый инструмент для CICD в Kubernetes – ArgoCD.
+
 Use data from "Diplom1"
 
 > cat tf_diplom1_data.tf
